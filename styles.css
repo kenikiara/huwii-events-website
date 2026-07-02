@@ -480,7 +480,27 @@ summary:focus-visible {
 
 .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
 
-.card h3 { margin-top: var(--space-2); }
+.card h3 { margin-top: var(--space-2); font-size: var(--text-md); }
+
+/* White cards/tiers sitting inside a dark section keep dark, readable text */
+.section--dark .card,
+.section--dark .tier { color: var(--color-text); }
+
+.section--dark .card h3,
+.section--dark .card h4,
+.section--dark .tier h3 { color: var(--color-ink); }
+
+.section--dark .card p,
+.section--dark .tier p { color: var(--color-muted); }
+
+/* Reusable cover image for content cards */
+.card__cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+}
 
 .card__icon {
   width: 52px;
@@ -502,10 +522,61 @@ summary:focus-visible {
   text-decoration: none;
 }
 
-/* Service pillar cards (home) */
-.pillar-card { display: flex; flex-direction: column; gap: var(--space-2); }
+/* Service pillar cards (home) — full poster, whole card clickable */
+.pillar-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  overflow: hidden;
+  padding: 0 var(--space-3) var(--space-4);
+  text-decoration: none;
+  color: var(--color-ink);
+}
 
-.pillar-card .btn { align-self: flex-start; margin-top: auto; }
+.pillar-card__media {
+  margin: 0 calc(var(--space-3) * -1) 0;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-ink);
+}
+
+.pillar-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pillar-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 2.2vw, 1.1rem);
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin: 0;
+  color: var(--color-ink);
+  hyphens: none;
+}
+
+.pillar-card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: auto;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-primary-dark);
+}
+
+.pillar-card__more svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.15s ease;
+}
+
+.pillar-card:hover { color: var(--color-ink); }
+.pillar-card:hover .pillar-card__more { color: var(--color-primary); }
+.pillar-card:hover .pillar-card__more svg { transform: translateX(4px); }
 
 /* Product / game cards */
 .product-card {
