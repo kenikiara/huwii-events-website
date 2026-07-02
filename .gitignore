@@ -1,0 +1,7 @@
+# Internal content source documents — not part of the published site
+*.docx
+
+# Local tooling
+.claude/
+desktop.ini
+Thumbs.db
